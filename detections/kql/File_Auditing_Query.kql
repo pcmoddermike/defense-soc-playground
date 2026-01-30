@@ -1,1 +1,22 @@
+// Detection Objective:
+// Audit user-driven file access and modification activity across Defender-monitored devices
+// while reducing noise from common productivity applications and benign system paths.
+//
+// Intended Use Case:
+// - Targeted user activity investigation
+// - Insider risk review
+// - Post-incident scoping
+//
+// Data Source:
+// Microsoft Defender for Cloud Apps (CloudAppEvents)
 
+let TargetUser = "username";
+CloudAppEvents
+| where TimeGenerated > ago(60d)
+| where RawEventData.UserId has TargetUser
+| where Application !in ("Workday", "Microsoft Viva Engage", "Microsoft Exchange Online", "Microsoft Teams")
+| where ActionType !in ("SignInEvent", "PageViewed", "FileUploadedPartial", "ListViewed", "FileUploaded", "FileAccessedExtended", "FileModifiedExtended", "SearchQueryPerformed", "ClientViewSignaled")
+| where not( RawEventData.ObjectId has_any ("Recycle", "Content.Outlook", "ProgramData", "Adobe", "Zoom", ".cisco", ".dat"))
+| project Timestamp, IPAddress, ActionType, Application, AccountDisplayName, RawEventData.ObjectId, RawEventData.DeviceName, RawEventData.TargetUrl
+
+ 
