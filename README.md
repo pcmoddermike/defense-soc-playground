@@ -1,12 +1,15 @@
-# KQL Detections
+# Defense SOC Playground
 
-This directory contains Kusto Query Language (KQL) detections designed for SOC and detection engineering use cases.
+This repository contains hands-on defensive security projects focused on modern SOC workflows, detection engineering, and security automation.
 
-## Focus Areas
-- Endpoint and process-based detections
-- PowerShell and script execution monitoring
-- Living-off-the-Land (LOLBins) abuse
-- Alert logic tuning and false positive reduction
+The goal of this repository is to demonstrate practical, real-world defensive security skills through detection logic, analysis, and small supporting tools — not to serve as a collection of copied rules or certifications.
 
-## Notes
-These detections assume common Microsoft Defender and Sentinel-style telemetry and are intended to demonstrate detection logic rather than environment-specific configurations.
+## Objectives
+- Design and document practical security detections
+- Explore alert logic, false positives, and tuning considerations
+- Translate attacker techniques into actionable detection strategies
+- Build small automation utilities that support SOC operations
+
+## Repository Structure
+
+
